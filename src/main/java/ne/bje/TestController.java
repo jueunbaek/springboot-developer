@@ -1,29 +1,17 @@
 package ne.bje;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 public class TestController {
-
-    @GetMapping("/hi")
-    public String hi() {
-        return "안녕하세요 'http://localhost:8080/hi' 에 대한 응답입니다.";
-    }
-
+    @Autowired
+    TestService testService;
     @GetMapping("/test")
-    public String test() {
-        return "안녕하세요 'http://localhost:8080/test' 에 대한 응답입니다.";
-    }
-    @PutMapping("/test")
-    public String puttest() {
-        return "안녕하세요 'http://localhost:8080/TestPut' 에 대한 응답입니다.";
-    }
-    @PostMapping("/test")
-    public String posttest() {
-        return "안녕하세요 'http://localhost:8080/PostTest' 에 대한 응답입니다.";
-    }
-    @DeleteMapping("/test")
-    public String deletetest() {
-        return "안녕하세요 'http://localhost:8080/DeleteMapping' 에 대한 응답입니다.";
+    public List<Member> getAllMembers() {
+        List<Member> members = testService.getAllMembers();
+        return members;
     }
 }
